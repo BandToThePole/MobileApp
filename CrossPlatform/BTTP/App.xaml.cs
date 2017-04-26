@@ -19,16 +19,26 @@ namespace BTTP
             Current.MainPage = new TabbedPage
             {
                 Children = {
-                    new NavigationPage(new ItemsPage())
+                    new NavigationPage(new ItemsPage(new CalorieStreamViewModel()))
                     {
-                        Title = "Browse",
+                        Title = "Calories",
                         Icon = Device.OnPlatform("tab_feed.png", null, null)
                     },
-                    new NavigationPage(new AboutPage())
-                    {
-                        Title = "About",
-                        Icon = Device.OnPlatform("tab_about.png", null, null)
-                    },
+					new NavigationPage(new ItemsPage(new LocationStreamViewModel()))
+					{
+						Title = "Locations",
+						Icon = Device.OnPlatform("tab_feed.png", null, null)
+					},
+					new NavigationPage(new ItemsPage(new DistancesStreamViewModel()))
+					{
+						Title = "Distances",
+						Icon = Device.OnPlatform("tab_feed.png", null, null)
+					},
+					new NavigationPage(new ItemsPage(new HeartRateStreamViewModel()))
+					{
+						Title = "Heart rate",
+						Icon = Device.OnPlatform("tab_feed.png", null, null)
+					},
                 }
             };
         }
