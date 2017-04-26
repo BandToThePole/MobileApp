@@ -7,21 +7,28 @@ namespace BTTP
 {
     public class CustomMap : Map
     {
-        private List<CustomPin> customPins;
-        public List<CustomPin> CustomPins
+        private List<Pin> customPins;
+        public List<Pin> CustomPins
         {
             get { return customPins; }
             set
             {
                 customPins = value;
-                Pins.Clear();
                 if (customPins != null)
                 {
-                    foreach (var customPin in customPins)
-                    {
-                        Pins.Add(customPin.Pin);
-                    }
-                }                
+					Pins.Clear();
+					if (customPins != null)
+					{
+						foreach (var customPin in customPins)
+						{
+							Pins.Add(customPin);
+						}
+					}
+					if (customPins.Count > 0)
+					{
+						MoveToRegion(MapSpan.FromCenterAndRadius(customPins[customPins.Count - 1].Position, Xamarin.Forms.Maps.Distance.FromKilometers(1)));
+					}
+                }
             }
         }
 

@@ -29,7 +29,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HeartRateStreamViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DistancesStreamViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\CustomMap.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\CustomPin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MapPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MapViewModel.cs" />
   </ItemGroup>

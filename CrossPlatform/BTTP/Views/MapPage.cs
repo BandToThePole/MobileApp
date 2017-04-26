@@ -42,14 +42,7 @@ namespace BTTP
 
         private void UpdateMap()
         {
-            if (viewModel.Pins != null)
-            {
-                map.CustomPins = viewModel.Pins;
-                if (viewModel.Pins.Count > 0)
-                {
-                    map.MoveToRegion(MapSpan.FromCenterAndRadius(viewModel.Pins[viewModel.Pins.Count - 1].Pin.Position, Xamarin.Forms.Maps.Distance.FromKilometers(1.0)));
-                }
-            }
+            map.CustomPins = viewModel.Pins;
         }
     }
 }

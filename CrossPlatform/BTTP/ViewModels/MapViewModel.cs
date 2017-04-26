@@ -8,8 +8,8 @@ namespace BTTP
 {
     public class MapViewModel : ObservableObject
     {
-        private List<CustomPin> pins;
-        public List<CustomPin> Pins
+        private List<Pin> pins;
+        public List<Pin> Pins
         {
             get { return pins; }
             set { SetProperty(ref pins, value, "Pins"); }
@@ -17,7 +17,7 @@ namespace BTTP
 
         public MapViewModel()
         {
-			MessagingCenter.Subscribe<AllData>(this, Constants.NewDataMessage, UpdateModel);
+            MessagingCenter.Subscribe<AllData>(this, Constants.NewDataMessage, (obj) => UpdateModel(obj));
             if (App.RestService.LastData != null)
             {
                 UpdateModel(App.RestService.LastData);
@@ -26,17 +26,14 @@ namespace BTTP
 
         private void UpdateModel(AllData data)
         {
-            var ps = new List<CustomPin>();
+            var ps = new List<Pin>();
             foreach (var loc in data.Locations)
             {
-                ps.Add(new CustomPin()
+                ps.Add(new Pin()
                 {
-                    Pin = new Pin()
-                    {
-                        Type = PinType.Place,
-                        Position = new Position(loc.Latitude, loc.Longitude),
-                        Label = loc.Time.ToString()
-                    }
+                    Type = PinType.Place,
+                    Position = new Position(loc.Latitude, loc.Longitude),
+                    Label = loc.Time.ToString()
                 });
             }
             Pins = ps;
