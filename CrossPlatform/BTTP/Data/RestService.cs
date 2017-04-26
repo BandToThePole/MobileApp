@@ -5,12 +5,19 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Xamarin.Forms;
 
 namespace BTTP
 {
-    public class RestService : IRestService
+    public class RestService
     {
         private HttpClient client;
+        private AllData lastData;
+
+        public AllData LastData
+        {
+            get { return lastData; }
+        }
 
         public RestService()
         {
@@ -37,7 +44,18 @@ namespace BTTP
                 Debug.WriteLine($"Error fetching/parsing data: {e.Message}");
             }
 
+            if (allData != null)
+            {
+				lastData = allData; // Not sure what the potential for race conditions is here
+            }
+
             return allData;
+        }
+
+        public async Task RefreshAndNotifyAsync() 
+        {
+            var data = await RefreshDataAsync();
+            MessagingCenter.Send(data, Constants.NewDataMessage);
         }
     }
 }

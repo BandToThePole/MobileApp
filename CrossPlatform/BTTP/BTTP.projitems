@@ -20,7 +20,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Calorie.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AllData.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Data\IRestService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\RestService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\HeartRate.cs" />

@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace BTTP
 {
     public partial class App : Application
     {
-        public static IRestService RestService { get; private set; }
+        public static RestService RestService { get; private set; }
 
         public App()
         {
@@ -16,6 +17,7 @@ namespace BTTP
 
         public static void GoToMainPage()
         {
+            Task.Factory.StartNew(RestService.RefreshAndNotifyAsync);
             Current.MainPage = new TabbedPage
             {
                 Children = {
