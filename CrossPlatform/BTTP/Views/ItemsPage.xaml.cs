@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -34,12 +35,12 @@ namespace BTTP
             await Navigation.PushAsync(new NewItemPage());
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            AllData allData = await App.RestService.RefreshDataAsync();
+            Debug.WriteLine("Got data");
         }
     }
 }

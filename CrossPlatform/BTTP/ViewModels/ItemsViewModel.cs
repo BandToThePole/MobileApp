@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -21,7 +22,7 @@ namespace BTTP
             {
                 var _item = item as Item;
                 Items.Add(_item);
-                await DataStore.AddItemAsync(_item);
+                // await DataStore.AddItemAsync(_item);
             });
         }
 
@@ -35,7 +36,7 @@ namespace BTTP
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                var items = new List<Item>();
                 Items.ReplaceRange(items);
             }
             catch (Exception ex)
