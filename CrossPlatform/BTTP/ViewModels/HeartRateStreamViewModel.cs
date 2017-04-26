@@ -16,7 +16,7 @@ namespace BTTP
 			List<ItemViewModel> items = new List<ItemViewModel>();
             foreach (var bpm in data.HeartRates)
 			{
-                items.Add(new ItemViewModel() { Title = $"${bpm.BeatsPerMinute} bpm", Description = bpm.Time.ToString() });
+                items.Add(new ItemViewModel() { Title = $"{bpm.BeatsPerMinute} bpm", Description = bpm.Time.ToString() });
 			}
 			this.Items = items;
 		}

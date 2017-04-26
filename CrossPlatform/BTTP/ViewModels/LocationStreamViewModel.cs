@@ -16,7 +16,7 @@ namespace BTTP
 			List<ItemViewModel> items = new List<ItemViewModel>();
             foreach (var loc in data.Locations)
 			{
-                items.Add(new ItemViewModel() { Title = $"${loc.Longitude}, {loc.Latitude}", Description = loc.Time.ToString() });
+                items.Add(new ItemViewModel() { Title = $"{loc.Longitude}, {loc.Latitude}", Description = loc.Time.ToString() });
 			}
 			this.Items = items;
 		}
