@@ -26,11 +26,6 @@ namespace BTTP
                         Title = "Calories",
                         Icon = Device.OnPlatform("tab_feed.png", null, null)
                     },
-					new NavigationPage(new ItemsPage(new LocationStreamViewModel()))
-					{
-						Title = "Locations",
-						Icon = Device.OnPlatform("tab_feed.png", null, null)
-					},
 					new NavigationPage(new ItemsPage(new DistancesStreamViewModel()))
 					{
 						Title = "Distances",
@@ -41,6 +36,11 @@ namespace BTTP
 						Title = "Heart rate",
 						Icon = Device.OnPlatform("tab_feed.png", null, null)
 					},
+                    new NavigationPage(new MapPage())
+                    {
+                        Title = "Map",
+                        Icon = Device.OnPlatform("tab_feed.png", null, null)
+                    }
                 }
             };
         }

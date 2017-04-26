@@ -42,5 +42,9 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Can we use your location for displaying maps?</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Can we use your location for displaying maps?</string>
 </dict>
 </plist>
