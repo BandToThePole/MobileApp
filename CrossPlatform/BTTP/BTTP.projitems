@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ObservableObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\DonatePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ItemsPage.xaml.cs">
       <DependentUpon>ItemsPage.xaml</DependentUpon>
     </Compile>
@@ -31,6 +32,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\CustomMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MapPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MapViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TwitterPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ItemsPage.xaml" />

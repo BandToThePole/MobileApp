@@ -48,7 +48,7 @@ namespace BTTP
                     },
                     new NavigationPage(new TwitterPage())
                     {
-                        Title = "Twitter!",
+                        Title = "Twitter",
                         Icon = Device.OnPlatform("tab_feed.png", null, null)
                     }
 				}
