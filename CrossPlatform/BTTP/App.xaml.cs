@@ -36,12 +36,22 @@ namespace BTTP
 						Title = "Heart rate",
 						Icon = Device.OnPlatform("tab_feed.png", null, null)
 					},
-                    new NavigationPage(new MapPage())
+					new NavigationPage(new MapPage())
+					{
+						Title = "Map",
+						Icon = Device.OnPlatform("tab_feed.png", null, null)
+					},
+                    new NavigationPage(new DonatePage())
                     {
-                        Title = "Map",
+                        Title = "Donate!",
+                        Icon = Device.OnPlatform("tab_feed.png", null, null)
+                    },
+                    new NavigationPage(new TwitterPage())
+                    {
+                        Title = "Twitter!",
                         Icon = Device.OnPlatform("tab_feed.png", null, null)
                     }
-                }
+				}
             };
         }
     }
