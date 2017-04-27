@@ -7,7 +7,7 @@ namespace BTTP
     {
         [JsonProperty("kcalcount")]
         public int Count { get; set; }
-        [JsonProperty("time")]
+        [JsonProperty("date")]
         public DateTime Time;
     }
 }

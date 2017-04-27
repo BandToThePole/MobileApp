@@ -16,7 +16,7 @@ namespace BTTP
             List<ItemViewModel> items = new List<ItemViewModel>();
             foreach (var kcal in data.Calories)
             {
-                items.Add(new ItemViewModel(){ Title = $"{kcal.Count} calories", Description = kcal.Time.ToString() });
+                items.Add(new ItemViewModel(){ Title = $"{kcal.Count} calories", Description = kcal.Time.ToShortDateString() });
             }
             this.Items = items;
         }

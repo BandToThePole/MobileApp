@@ -5,7 +5,7 @@ namespace BTTP
 {
     public class Distance
     {
-        [JsonProperty("time")]
+        [JsonProperty("date")]
         public DateTime Time { get; set; }
         [JsonProperty("distance")]
         // This is in cm

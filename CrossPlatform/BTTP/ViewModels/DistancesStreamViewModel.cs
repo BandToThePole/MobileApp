@@ -16,7 +16,7 @@ namespace BTTP
             List<ItemViewModel> items = new List<ItemViewModel>();
             foreach (var dist in data.Distances)
             {
-                items.Add(new ItemViewModel() { Title = $"{dist.DistanceCM}", Description = dist.Time.ToString() });
+                items.Add(new ItemViewModel() { Title = $"{dist.DistanceCM}", Description = dist.Time.ToShortDateString() });
             }
             this.Items = items;
         }
