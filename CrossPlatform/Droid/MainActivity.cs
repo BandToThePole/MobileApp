@@ -18,8 +18,6 @@ namespace BTTP.Droid
             Xamarin.FormsMaps.Init(this, bundle);
             OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
 
-            this.Window.AddFlags(WindowManagerFlags.Fullscreen);
-
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
