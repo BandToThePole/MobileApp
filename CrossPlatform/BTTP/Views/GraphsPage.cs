@@ -67,7 +67,7 @@ namespace BTTP.Views
 
             Content = new StackLayout
             {
-                Children = { caloriesButton, distancesButton, heartButton, }
+                Children = { heartButton, caloriesButton, distancesButton }
             };
         }
 
