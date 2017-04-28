@@ -16,6 +16,8 @@ namespace BTTP.Droid
         protected override void OnCreate(Bundle bundle)
         {
             Xamarin.FormsMaps.Init(this, bundle);
+            OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 

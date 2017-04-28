@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using BTTP.Views;
 using Xamarin.Forms;
 
 namespace BTTP
@@ -25,21 +26,10 @@ namespace BTTP
                     {
                         Title = "Data"
                     },
-                    /*new NavigationPage(new ItemsPage(new CalorieStreamViewModel()))
+                    new NavigationPage(new GraphsPage())
                     {
-                        Title = "Calories",
-                        Icon = Device.OnPlatform("tab_feed.png", null, null)
+                      Title  =  "Graphs"
                     },
-					new NavigationPage(new ItemsPage(new DistancesStreamViewModel()))
-					{
-						Title = "Distances",
-						Icon = Device.OnPlatform("tab_feed.png", null, null)
-					},
-					new NavigationPage(new ItemsPage(new HeartRateStreamViewModel()))
-					{
-						Title = "Heart rate",
-						Icon = Device.OnPlatform("tab_feed.png", null, null)
-					},*/
 					new NavigationPage(new MapPage())
 					{
 						Title = "Map",
@@ -47,7 +37,7 @@ namespace BTTP
 					},
                     new NavigationPage(new DonatePage())
                     {
-                        Title = "Donate!",
+                        Title = "Donate",
                         Icon = Device.OnPlatform("tab_feed.png", null, null)
                     },
                     new NavigationPage(new TwitterPage())
