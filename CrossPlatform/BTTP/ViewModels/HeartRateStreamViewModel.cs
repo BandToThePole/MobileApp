@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace BTTP
 {
 	public class HeartRateStreamViewModel : StreamViewModel
 	{
-        private List<Entry> entries;
-
         public HeartRateStreamViewModel()
 		{
 			this.Title = "Heart Rate";
@@ -17,20 +16,17 @@ namespace BTTP
 			base.UpdateModel(data);
 
 			List<ItemViewModel> items = new List<ItemViewModel>();
-            entries = new List<Entry>();
+            Entries = new List<Entry>();
 
             foreach (var bpm in data.HeartRates)
 			{
-                items.Add(new ItemViewModel() { Title = $"{bpm.BeatsPerMinute} bpm", Description = bpm.Time.ToString() });
-                entries.Add(new Entry(bpm.BeatsPerMinute, bpm.Time));
+                items.Add(new ItemViewModel() { Title = $"{bpm.BeatsPerMinute} bpm", Description = bpm.Time.ToString(StreamViewModel.DATE_FORMAT,
+                                                                                                                     StreamViewModel.Culture)
+                });
+                Entries.Add(new Entry(bpm.BeatsPerMinute, bpm.Time));
             }
 
 			this.Items = items;
 		}
-
-        public List<Entry> GetEntries()
-        {
-            return entries;
-        }
     }
 }

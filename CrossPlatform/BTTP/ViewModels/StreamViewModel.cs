@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-
+using System.Globalization;
 using Xamarin.Forms;
 
 namespace BTTP
 {
     public abstract class StreamViewModel : ObservableObject
     {
+        public const string DATE_FORMAT = "dd-MMMM-yyyy";
+        public static readonly CultureInfo Culture = new CultureInfo("en-GB");
+
+        protected List<Entry> Entries;
+
         public string Title { get; protected set; }
         public Command LoadItemsCommand { get; set; }
 
@@ -47,6 +52,11 @@ namespace BTTP
         public virtual void UpdateModel(AllData data)
         {
             // Implemented by subclasses
+        }
+
+        public List<Entry> GetEntries()
+        {
+            return Entries;
         }
     }
 }

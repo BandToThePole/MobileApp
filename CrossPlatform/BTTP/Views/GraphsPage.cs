@@ -51,7 +51,7 @@ namespace BTTP.Views
             };
         }
 
-        private static ContentPage CreateContentPage(String title, PlotModel model)
+        private static ContentPage CreateContentPage(string title, PlotModel model)
         {
             return new ContentPage()
             {
@@ -66,17 +66,17 @@ namespace BTTP.Views
             };
         }
 
-        private static String DATE_FORMAT = "dd-MMM";
+        private const string DATE_FORMAT = "dd-MMM";
+        private static readonly CultureInfo Culture = new CultureInfo("en-GB");
 
-        private PlotModel CaloriesCreatePlotModel()
+        private PlotModel genericColumnPlotModel(StreamViewModel viewModel, string yAxisTtitle, double scale = 1)
         {
-            CalorieStreamViewModel calorieStream = new CalorieStreamViewModel();
             var plotModel = new PlotModel();
 
             plotModel.Axes.Add(new LinearAxis
             {
                 Position = AxisPosition.Left,
-                Title = "Calories (kcal)"
+                Title = yAxisTtitle
             });
 
             var series = new ColumnSeries()
@@ -85,7 +85,7 @@ namespace BTTP.Views
                 FillColor = OxyColor.FromRgb(255, 165, 0)     // orange
             };
 
-            List<Entry> entries = calorieStream.GetEntries();
+            List<Entry> entries = viewModel.GetEntries();
             CategoryAxis categoryAxis = new CategoryAxis()
             {
                 Position = AxisPosition.Bottom,
@@ -93,14 +93,12 @@ namespace BTTP.Views
                 Title = "Date"
             };
 
-            CultureInfo culture = new CultureInfo("en-GB");
-
             if (entries != null)
             {
                 foreach (var entry in entries)
                 {
-                    series.Items.Add(new ColumnItem(entry.value));
-                    categoryAxis.Labels.Add(entry.date.ToString(DATE_FORMAT, culture));
+                    series.Items.Add(new ColumnItem((int)(entry.value / scale)));
+                    categoryAxis.Labels.Add(entry.date.ToString(DATE_FORMAT, Culture));
                 }
             }
 
@@ -108,6 +106,16 @@ namespace BTTP.Views
             plotModel.Series.Add(series);
 
             return plotModel;
+        }
+
+        private PlotModel CaloriesCreatePlotModel()
+        {
+            return genericColumnPlotModel(new CalorieStreamViewModel(), "Calories (kcal)");
+        }
+
+        private PlotModel DistancesCreatePlotModel()
+        {
+            return genericColumnPlotModel(new DistancesStreamViewModel(), "Distance (m)", 1000.0);
         }
 
         private PlotModel HeartRateCreatePlotModel()
@@ -132,8 +140,8 @@ namespace BTTP.Views
             {
                 MarkerType = MarkerType.Circle,
                 MarkerSize = 4,
-                MarkerStroke = OxyColor.FromRgb(255, 165, 0),  // orange,
-                MarkerFill = OxyColor.FromRgb(255, 165, 0),  // orange
+                MarkerStroke = OxyColor.FromRgb(255, 165, 0),  // orange
+                MarkerFill = OxyColor.FromRgb(255, 165, 0),    // orange
                 Background = OxyColor.FromRgb(135, 206, 250),  // blue
             };
 
@@ -150,48 +158,6 @@ namespace BTTP.Views
             plotModel.Series.Add(series);
 
             return plotModel;
-        }
-
-        private PlotModel DistancesCreatePlotModel()
-        {
-            DistancesStreamViewModel distancesStream = new DistancesStreamViewModel();
-            var plotModel = new PlotModel();
-
-            plotModel.Axes.Add(new LinearAxis
-            {
-                Position = AxisPosition.Left,
-                Title = "Distance (m)"
-            });
-
-            var series = new ColumnSeries()
-            {
-                Background = OxyColor.FromRgb(135, 206, 250), // blue
-                FillColor = OxyColor.FromRgb(255, 165, 0)     // orange
-            };
-
-            List<Entry> entries = distancesStream.GetEntries();
-            CategoryAxis categoryAxis = new CategoryAxis()
-            {
-                Position = AxisPosition.Bottom,
-                StringFormat = DATE_FORMAT,
-                Title = "Date"
-            };
-
-            CultureInfo culture = new CultureInfo("en-GB");
-
-            if (entries != null)
-            {
-                foreach (var entry in entries)
-                {
-                    series.Items.Add(new ColumnItem((int)(entry.value / 1000.0)));
-                    categoryAxis.Labels.Add(entry.date.ToString(DATE_FORMAT, culture));
-                }
-            }
-
-            plotModel.Axes.Add(categoryAxis);
-            plotModel.Series.Add(series);
-
-            return plotModel;
-        }
+        } 
     }
 }
