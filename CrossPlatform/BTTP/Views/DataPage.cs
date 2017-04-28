@@ -9,6 +9,8 @@ namespace BTTP
     {
         public DataPage()
         {
+            this.Title = "Data";
+
             var caloriesButton = new Button()
             {
                 Text = "Calories"
@@ -26,29 +28,50 @@ namespace BTTP
 
             caloriesButton.Clicked += async (sender, args) =>
             {
-                await Navigation.PushAsync(new NavigationPage(new ItemsPage(new CalorieStreamViewModel()))
+                var itemsPage = new ItemsPage(new CalorieStreamViewModel());
+                itemsPage.Appearing += (sender1, args1) => NavigationPage.SetHasNavigationBar(itemsPage, false);
+
+                var navPage = new NavigationPage(itemsPage)
                 {
                     Title = "Calories",
                     Icon = Device.OnPlatform("tab_feed.png", null, null)
-                });
+                };
+
+                navPage.Appearing += (sender1, args1) => NavigationPage.SetHasBackButton(navPage, true);
+
+                await Navigation.PushAsync(navPage);
             };
 
             distancesButton.Clicked += async (sender, args) =>
             {
-                await Navigation.PushAsync(new NavigationPage(new ItemsPage(new DistancesStreamViewModel()))
+                var itemsPage = new ItemsPage(new DistancesStreamViewModel());
+                itemsPage.Appearing += (sender1, args1) => NavigationPage.SetHasNavigationBar(itemsPage, false);
+
+                var navPage = new NavigationPage(itemsPage)
                 {
                     Title = "Distances",
                     Icon = Device.OnPlatform("tab_feed.png", null, null)
-                });
+                };
+
+                navPage.Appearing += (sender1, args1) => NavigationPage.SetHasBackButton(navPage, true);
+
+                await Navigation.PushAsync(navPage);
             };
 
             heartButton.Clicked += async (sender, args) =>
             {
-                await Navigation.PushAsync(new NavigationPage(new ItemsPage(new HeartRateStreamViewModel()))
+                var itemsPage = new ItemsPage(new HeartRateStreamViewModel());
+                itemsPage.Appearing += (sender1, args1) => NavigationPage.SetHasNavigationBar(itemsPage, false);
+
+                var navPage = new NavigationPage(itemsPage)
                 {
                     Title = "Heart rate",
                     Icon = Device.OnPlatform("tab_feed.png", null, null)
-                });
+                };
+
+                navPage.Appearing += (sender1, args1) => NavigationPage.SetHasBackButton(navPage, true);
+
+                await Navigation.PushAsync(navPage);
             };
 
             Content = new StackLayout

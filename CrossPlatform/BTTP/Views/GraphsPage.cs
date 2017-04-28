@@ -15,6 +15,8 @@ namespace BTTP.Views
     {
         public GraphsPage()
         {
+            this.Title = "Graphs";
+
             var caloriesButton = new Button()
             {
                 Text = "Calories graph"
@@ -32,17 +34,35 @@ namespace BTTP.Views
 
             caloriesButton.Clicked += async (sender, args) =>
             {
-                await Navigation.PushAsync(new NavigationPage(CreateContentPage("Calories graph", CaloriesCreatePlotModel())));
+                var navPage = new NavigationPage(CreateContentPage("Calories graph", CaloriesCreatePlotModel()))
+                {
+                    Title = "Calories graph"
+                };
+
+                navPage.Appearing += (sender1, args1) => NavigationPage.SetHasBackButton(navPage, true);
+                await Navigation.PushAsync(navPage);
             };
 
             heartButton.Clicked += async (sender, args) =>
             {
-                await Navigation.PushAsync(new NavigationPage(CreateContentPage("Heart rate graph", HeartRateCreatePlotModel())));
+                var navPage = new NavigationPage(CreateContentPage("Heart rate graph", HeartRateCreatePlotModel()))
+                {
+                    Title = "Heart rate graph"
+                };
+
+                navPage.Appearing += (sender1, args1) => NavigationPage.SetHasBackButton(navPage, true);
+                await Navigation.PushAsync(navPage);
             };
 
             distancesButton.Clicked += async (sender, args) =>
             {
-                await Navigation.PushAsync(new NavigationPage(CreateContentPage("Distances graph", DistancesCreatePlotModel())));
+                var navPage = new NavigationPage(CreateContentPage("Distances graph", DistancesCreatePlotModel()))
+                {
+                    Title = "Distances graph",
+                };
+
+                navPage.Appearing += (sender1, args1) => NavigationPage.SetHasBackButton(navPage, true);
+                await Navigation.PushAsync(navPage);
             };
 
             Content = new StackLayout
@@ -53,7 +73,7 @@ namespace BTTP.Views
 
         private static ContentPage CreateContentPage(string title, PlotModel model)
         {
-            return new ContentPage()
+            var page = new ContentPage()
             {
                 Title = title,
 
@@ -62,8 +82,12 @@ namespace BTTP.Views
                     Model = model,
                     VerticalOptions = LayoutOptions.Fill,
                     HorizontalOptions = LayoutOptions.Fill
-                }
+                },
             };
+
+            page.Appearing += (sender, args) => NavigationPage.SetHasNavigationBar(page, false);
+   
+            return page;
         }
 
         private const string DATE_FORMAT = "dd-MMM";
@@ -76,12 +100,13 @@ namespace BTTP.Views
             plotModel.Axes.Add(new LinearAxis
             {
                 Position = AxisPosition.Left,
-                Title = yAxisTtitle
+                Title = yAxisTtitle,
+                MaximumPadding = 0.05
             });
 
             var series = new ColumnSeries()
             {
-                Background = OxyColor.FromRgb(135, 206, 250), // blue
+                Background = OxyColor.FromRgb(33, 150, 243), // blue
                 FillColor = OxyColor.FromRgb(255, 165, 0)     // orange
             };
 
@@ -90,7 +115,9 @@ namespace BTTP.Views
             {
                 Position = AxisPosition.Bottom,
                 StringFormat = DATE_FORMAT,
-                Title = "Date"
+                Title = "Date",
+                MinimumPadding = 0.05,
+                MaximumPadding = 0.05
             };
 
             if (entries != null)
@@ -126,23 +153,28 @@ namespace BTTP.Views
             plotModel.Axes.Add(new LinearAxis
             {
                 Position = AxisPosition.Left,
-                Title = "BPM"
+                Title = "BPM",
+                MaximumPadding = 0.05
             });
 
-            plotModel.Axes.Add(new DateTimeAxis
+            var dateTimeAxis = new DateTimeAxis()
             {
                 Position = AxisPosition.Bottom,
                 Title = "Date",
                 StringFormat = DATE_FORMAT,
-            });
+                MinimumPadding = 0.05,
+                MaximumPadding = 0.05
+            };
+
+            plotModel.Axes.Add(dateTimeAxis);
 
             var series = new ScatterSeries()
             {
                 MarkerType = MarkerType.Circle,
                 MarkerSize = 4,
-                MarkerStroke = OxyColor.FromRgb(255, 165, 0),  // orange
+                MarkerStroke = OxyColor.FromRgb(0, 0, 139),    // darkblue
                 MarkerFill = OxyColor.FromRgb(255, 165, 0),    // orange
-                Background = OxyColor.FromRgb(135, 206, 250),  // blue
+                Background = OxyColor.FromRgb(33, 150, 243),   // blue
             };
 
             List<Entry> entries = heartRateStream.GetEntries();

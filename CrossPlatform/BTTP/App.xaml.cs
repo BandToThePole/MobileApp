@@ -24,11 +24,13 @@ namespace BTTP
                 Children = {
                     new NavigationPage(new DataPage())
                     {
-                        Title = "Data"
+                        Title = "Data",
+                        Icon = Device.OnPlatform("tab_feed.png", null, null)
                     },
                     new NavigationPage(new GraphsPage())
                     {
-                      Title  =  "Graphs"
+                        Title  =  "Graphs",
+                        Icon = Device.OnPlatform("tab_feed.png", null, null)
                     },
 					new NavigationPage(new MapPage())
 					{

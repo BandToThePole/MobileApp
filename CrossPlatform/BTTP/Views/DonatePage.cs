@@ -9,7 +9,7 @@ namespace BTTP
     {
         public DonatePage()
         {
-            this.Title = "Donate!";
+            this.Title = "Donate";
 
             Content = new StackLayout
             {
