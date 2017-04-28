@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
+using System.Threading;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
@@ -64,44 +66,46 @@ namespace BTTP.Views
             };
         }
 
+        private static String DATE_FORMAT = "dd-MMM";
+
         private PlotModel CaloriesCreatePlotModel()
         {
             CalorieStreamViewModel calorieStream = new CalorieStreamViewModel();
             var plotModel = new PlotModel();
 
-            plotModel.Axes.Add(new DateTimeAxis
-            {
-                Position = AxisPosition.Bottom,
-                StringFormat = "yyyy-MM-dd",
-                Title = "Date"
-            });
-
             plotModel.Axes.Add(new LinearAxis
             {
                 Position = AxisPosition.Left,
-                Maximum = 10000,
-                Minimum = 0,
                 Title = "Calories (kcal)"
             });
 
-            var series1 = new ScatterSeries()
+            var series = new ColumnSeries()
             {
-                MarkerType = MarkerType.Circle,
-                MarkerSize = 6,
-                MarkerStroke = OxyColors.White
+                Background = OxyColor.FromRgb(135, 206, 250), // blue
+                FillColor = OxyColor.FromRgb(255, 165, 0)     // orange
             };
 
             List<Entry> entries = calorieStream.GetEntries();
+            CategoryAxis categoryAxis = new CategoryAxis()
+            {
+                Position = AxisPosition.Bottom,
+                StringFormat = DATE_FORMAT,
+                Title = "Date"
+            };
+
+            CultureInfo culture = new CultureInfo("en-GB");
 
             if (entries != null)
             {
                 foreach (var entry in entries)
                 {
-                    series1.Points.Add(new ScatterPoint(DateTimeAxis.ToDouble(entry.date), entry.value));
+                    series.Items.Add(new ColumnItem(entry.value));
+                    categoryAxis.Labels.Add(entry.date.ToString(DATE_FORMAT, culture));
                 }
             }
 
-            plotModel.Series.Add(series1);
+            plotModel.Axes.Add(categoryAxis);
+            plotModel.Series.Add(series);
 
             return plotModel;
         }
@@ -111,26 +115,26 @@ namespace BTTP.Views
             HeartRateStreamViewModel heartRateStream = new HeartRateStreamViewModel();
             var plotModel = new PlotModel();
 
-            plotModel.Axes.Add(new DateTimeAxis
-            {
-                Position = AxisPosition.Bottom,
-                StringFormat = "yyyy-MM-dd",
-                Title = "Date"
-            });
-
             plotModel.Axes.Add(new LinearAxis
             {
                 Position = AxisPosition.Left,
-                Maximum = 200,
-                Minimum = 0,
                 Title = "BPM"
             });
 
-            var series1 = new ScatterSeries()
+            plotModel.Axes.Add(new DateTimeAxis
+            {
+                Position = AxisPosition.Bottom,
+                Title = "Date",
+                StringFormat = DATE_FORMAT,
+            });
+
+            var series = new ScatterSeries()
             {
                 MarkerType = MarkerType.Circle,
-                MarkerSize = 6,
-                MarkerStroke = OxyColors.White
+                MarkerSize = 4,
+                MarkerStroke = OxyColor.FromRgb(255, 165, 0),  // orange,
+                MarkerFill = OxyColor.FromRgb(255, 165, 0),  // orange
+                Background = OxyColor.FromRgb(135, 206, 250),  // blue
             };
 
             List<Entry> entries = heartRateStream.GetEntries();
@@ -139,11 +143,11 @@ namespace BTTP.Views
             {
                 foreach (var entry in entries)
                 {
-                    series1.Points.Add(new ScatterPoint(DateTimeAxis.ToDouble(entry.date), entry.value));
+                    series.Points.Add(new ScatterPoint(DateTimeAxis.ToDouble(entry.date), entry.value));
                 }
             }
 
-            plotModel.Series.Add(series1);
+            plotModel.Series.Add(series);
 
             return plotModel;
         }
@@ -153,37 +157,39 @@ namespace BTTP.Views
             DistancesStreamViewModel distancesStream = new DistancesStreamViewModel();
             var plotModel = new PlotModel();
 
-            plotModel.Axes.Add(new DateTimeAxis
-            {
-                Position = AxisPosition.Bottom,
-                StringFormat = "yyyy-MM-dd",
-                Title = "Date"
-            });
-
             plotModel.Axes.Add(new LinearAxis
             {
                 Position = AxisPosition.Left,
                 Title = "Distance (m)"
             });
 
-            var series1 = new ScatterSeries()
+            var series = new ColumnSeries()
             {
-                MarkerType = MarkerType.Circle,
-                MarkerSize = 6,
-                MarkerStroke = OxyColors.White
+                Background = OxyColor.FromRgb(135, 206, 250), // blue
+                FillColor = OxyColor.FromRgb(255, 165, 0)     // orange
             };
 
             List<Entry> entries = distancesStream.GetEntries();
+            CategoryAxis categoryAxis = new CategoryAxis()
+            {
+                Position = AxisPosition.Bottom,
+                StringFormat = DATE_FORMAT,
+                Title = "Date"
+            };
+
+            CultureInfo culture = new CultureInfo("en-GB");
 
             if (entries != null)
             {
                 foreach (var entry in entries)
                 {
-                    series1.Points.Add(new ScatterPoint(DateTimeAxis.ToDouble(entry.date), entry.value / 1000.0));
+                    series.Items.Add(new ColumnItem((int)(entry.value / 1000.0)));
+                    categoryAxis.Labels.Add(entry.date.ToString(DATE_FORMAT, culture));
                 }
             }
 
-            plotModel.Series.Add(series1);
+            plotModel.Axes.Add(categoryAxis);
+            plotModel.Series.Add(series);
 
             return plotModel;
         }
