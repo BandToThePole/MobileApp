@@ -72,7 +72,8 @@ namespace BTTP.Views
             plotModel.Axes.Add(new DateTimeAxis
             {
                 Position = AxisPosition.Bottom,
-                StringFormat = "yyyy-MM-dd"
+                StringFormat = "yyyy-MM-dd",
+                Title = "Date"
             });
 
             plotModel.Axes.Add(new LinearAxis
@@ -86,13 +87,18 @@ namespace BTTP.Views
             var series1 = new ScatterSeries()
             {
                 MarkerType = MarkerType.Circle,
-                MarkerSize = 4,
+                MarkerSize = 6,
                 MarkerStroke = OxyColors.White
             };
 
-            foreach(var entry in calorieStream.GetEntries())
+            List<Entry> entries = calorieStream.GetEntries();
+
+            if (entries != null)
             {
-                series1.Points.Add(new ScatterPoint(DateTimeAxis.ToDouble(entry.date), entry.value));
+                foreach (var entry in entries)
+                {
+                    series1.Points.Add(new ScatterPoint(DateTimeAxis.ToDouble(entry.date), entry.value));
+                }
             }
 
             plotModel.Series.Add(series1);
@@ -108,7 +114,8 @@ namespace BTTP.Views
             plotModel.Axes.Add(new DateTimeAxis
             {
                 Position = AxisPosition.Bottom,
-                StringFormat = "yyyy-MM-dd"
+                StringFormat = "yyyy-MM-dd",
+                Title = "Date"
             });
 
             plotModel.Axes.Add(new LinearAxis
@@ -122,13 +129,18 @@ namespace BTTP.Views
             var series1 = new ScatterSeries()
             {
                 MarkerType = MarkerType.Circle,
-                MarkerSize = 4,
+                MarkerSize = 6,
                 MarkerStroke = OxyColors.White
             };
 
-            foreach (var entry in heartRateStream.GetEntries())
+            List<Entry> entries = heartRateStream.GetEntries();
+
+            if (entries != null)
             {
-                series1.Points.Add(new ScatterPoint(DateTimeAxis.ToDouble(entry.date), entry.value));
+                foreach (var entry in entries)
+                {
+                    series1.Points.Add(new ScatterPoint(DateTimeAxis.ToDouble(entry.date), entry.value));
+                }
             }
 
             plotModel.Series.Add(series1);
@@ -144,7 +156,8 @@ namespace BTTP.Views
             plotModel.Axes.Add(new DateTimeAxis
             {
                 Position = AxisPosition.Bottom,
-                StringFormat = "yyyy-MM-dd"
+                StringFormat = "yyyy-MM-dd",
+                Title = "Date"
             });
 
             plotModel.Axes.Add(new LinearAxis
@@ -156,13 +169,18 @@ namespace BTTP.Views
             var series1 = new ScatterSeries()
             {
                 MarkerType = MarkerType.Circle,
-                MarkerSize = 4,
+                MarkerSize = 6,
                 MarkerStroke = OxyColors.White
             };
 
-            foreach (var entry in distancesStream.GetEntries())
+            List<Entry> entries = distancesStream.GetEntries();
+
+            if (entries != null)
             {
-                series1.Points.Add(new ScatterPoint(DateTimeAxis.ToDouble(entry.date), entry.value / 1000.0));
+                foreach (var entry in entries)
+                {
+                    series1.Points.Add(new ScatterPoint(DateTimeAxis.ToDouble(entry.date), entry.value / 1000.0));
+                }
             }
 
             plotModel.Series.Add(series1);
