@@ -150,7 +150,7 @@ namespace BTTP.Views
             plotModel.Axes.Add(new LinearAxis
             {
                 Position = AxisPosition.Left,
-                Title = "Distance"
+                Title = "Distance (m)"
             });
 
             var series1 = new ScatterSeries()
@@ -162,7 +162,7 @@ namespace BTTP.Views
 
             foreach (var entry in distancesStream.GetEntries())
             {
-                series1.Points.Add(new ScatterPoint(DateTimeAxis.ToDouble(entry.date), entry.value));
+                series1.Points.Add(new ScatterPoint(DateTimeAxis.ToDouble(entry.date), entry.value / 1000.0));
             }
 
             plotModel.Series.Add(series1);
