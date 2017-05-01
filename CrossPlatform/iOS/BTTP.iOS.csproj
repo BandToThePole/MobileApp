@@ -167,6 +167,21 @@
     <BundleResource Include="Resources\xamarin_logo.png" />
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
+    <BundleResource Include="Resources\data.png" />
+    <BundleResource Include="Resources\data%402x.png" />
+    <BundleResource Include="Resources\data%403x.png" />
+    <BundleResource Include="Resources\donate.png" />
+    <BundleResource Include="Resources\donate%402x.png" />
+    <BundleResource Include="Resources\donate%403x.png" />
+    <BundleResource Include="Resources\graph.png" />
+    <BundleResource Include="Resources\graph%402x.png" />
+    <BundleResource Include="Resources\graph%403x.png" />
+    <BundleResource Include="Resources\map.png" />
+    <BundleResource Include="Resources\map%402x.png" />
+    <BundleResource Include="Resources\map%403x.png" />
+    <BundleResource Include="Resources\twitter.png" />
+    <BundleResource Include="Resources\twitter%402x.png" />
+    <BundleResource Include="Resources\twitter%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

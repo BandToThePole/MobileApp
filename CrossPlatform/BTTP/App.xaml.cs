@@ -25,27 +25,27 @@ namespace BTTP
                     new NavigationPage(new DataPage())
                     {
                         Title = "Data",
-                        Icon = Device.OnPlatform("tab_feed.png", null, null)
+                        Icon = Device.OnPlatform("data.png", null, null)
                     },
                     new NavigationPage(new GraphsPage())
                     {
                         Title  =  "Graphs",
-                        Icon = Device.OnPlatform("tab_feed.png", null, null)
+                        Icon = Device.OnPlatform("graph.png", null, null)
                     },
 					new NavigationPage(new MapPage())
 					{
 						Title = "Map",
-						Icon = Device.OnPlatform("tab_feed.png", null, null)
+						Icon = Device.OnPlatform("map.png", null, null)
 					},
                     new NavigationPage(new DonatePage())
                     {
                         Title = "Donate",
-                        Icon = Device.OnPlatform("tab_feed.png", null, null)
+                        Icon = Device.OnPlatform("donate.png", null, null)
                     },
                     new NavigationPage(new TwitterPage())
                     {
                         Title = "Twitter",
-                        Icon = Device.OnPlatform("tab_feed.png", null, null)
+                        Icon = Device.OnPlatform("twitter.png", null, null)
                     }
 				}
             };

@@ -34,7 +34,7 @@ namespace BTTP
                 var navPage = new NavigationPage(itemsPage)
                 {
                     Title = "Calories",
-                    Icon = Device.OnPlatform("tab_feed.png", null, null)
+                    Icon = Device.OnPlatform("data.png", null, null)
                 };
 
                 navPage.Appearing += (sender1, args1) => NavigationPage.SetHasBackButton(navPage, true);
@@ -50,7 +50,7 @@ namespace BTTP
                 var navPage = new NavigationPage(itemsPage)
                 {
                     Title = "Distances",
-                    Icon = Device.OnPlatform("tab_feed.png", null, null)
+                    Icon = Device.OnPlatform("data.png", null, null)
                 };
 
                 navPage.Appearing += (sender1, args1) => NavigationPage.SetHasBackButton(navPage, true);
@@ -66,7 +66,7 @@ namespace BTTP
                 var navPage = new NavigationPage(itemsPage)
                 {
                     Title = "Heart rate",
-                    Icon = Device.OnPlatform("tab_feed.png", null, null)
+                    Icon = Device.OnPlatform("data.png", null, null)
                 };
 
                 navPage.Appearing += (sender1, args1) => NavigationPage.SetHasBackButton(navPage, true);
