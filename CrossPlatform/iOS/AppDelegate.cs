@@ -15,6 +15,7 @@ namespace BTTP.iOS
 			global::Xamarin.Forms.Forms.Init();
 			Xamarin.FormsMaps.Init();
             LoadApplication(new App());
+            UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.LightContent;
             return base.FinishedLaunching(app, options);
         }
     }
