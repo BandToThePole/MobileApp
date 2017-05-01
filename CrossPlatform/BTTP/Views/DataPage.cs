@@ -23,7 +23,7 @@ namespace BTTP
 
             var heartButton = new Button()
             {
-                Text = "Hear rate"
+                Text = "Heart rate"
             };
 
             caloriesButton.Clicked += async (sender, args) =>
