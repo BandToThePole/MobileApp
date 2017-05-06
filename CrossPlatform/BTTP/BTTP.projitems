@@ -11,7 +11,10 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Data\RestService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ObservableObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DistCalStreamViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StreamViewModelDC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\DataPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\DCEntry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\DonatePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Entry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\GraphsPage.cs" />

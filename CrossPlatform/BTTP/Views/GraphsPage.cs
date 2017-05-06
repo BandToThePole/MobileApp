@@ -32,6 +32,11 @@ namespace BTTP.Views
                 Text = "Distances graph"
             };
 
+            var distCalButton = new Button()
+            {
+                Text = "Calories/Distance graph"
+            };
+
             caloriesButton.Clicked += async (sender, args) =>
             {
                 var navPage = new NavigationPage(CreateContentPage("Calories graph", CaloriesCreatePlotModel()))
@@ -65,9 +70,20 @@ namespace BTTP.Views
                 await Navigation.PushAsync(navPage);
             };
 
+            distCalButton.Clicked += async (sender, args) =>
+            {
+                var navPage = new NavigationPage(CreateContentPage("Calories/Distance graph", DistCalCreatePlotModel()))
+                {
+                    Title = "Calories/Distance graph"
+                };
+
+                navPage.Appearing += (sender1, args1) => NavigationPage.SetHasBackButton(navPage, true);
+                await Navigation.PushAsync(navPage);
+            };
+
             Content = new StackLayout
             {
-                Children = { heartButton, caloriesButton, distancesButton }
+                Children = { heartButton, caloriesButton, distancesButton, distCalButton }
             };
         }
 
@@ -142,7 +158,7 @@ namespace BTTP.Views
 
         private PlotModel DistancesCreatePlotModel()
         {
-            return genericColumnPlotModel(new DistancesStreamViewModel(), "Distance (m)", 1000.0);
+            return genericColumnPlotModel(new DistancesStreamViewModel(), "Distance (m)", 100.0);
         }
 
         private PlotModel HeartRateCreatePlotModel()
@@ -190,6 +206,48 @@ namespace BTTP.Views
             plotModel.Series.Add(series);
 
             return plotModel;
-        } 
+        }
+        private PlotModel DistCalCreatePlotModel()
+        {
+            DistCalStreamViewModel distCalStream = new DistCalStreamViewModel();
+            var plotModel = new PlotModel();
+
+            plotModel.Axes.Add(new LinearAxis
+            {
+                Position = AxisPosition.Left,
+                Title = "Calories",
+                MaximumPadding = 0.05
+            });
+
+            plotModel.Axes.Add(new LinearAxis
+            {
+                Position = AxisPosition.Bottom,
+                Title = "Distance",
+                MaximumPadding = 0.05
+            });
+
+            var series = new ScatterSeries()
+            {
+                MarkerType = MarkerType.Circle,
+                MarkerSize = 4,
+                MarkerStroke = OxyColor.FromRgb(0, 0, 139),    // darkblue
+                MarkerFill = OxyColor.FromRgb(255, 165, 0),    // orange
+                Background = OxyColor.FromRgb(33, 150, 243),   // blue
+            };
+
+            List<DCEntry> entries = distCalStream.GetEntries();
+
+            if (entries != null)
+            {
+                foreach (var entry in entries)
+                {
+                    series.Points.Add(new ScatterPoint(entry.dist/100.0, entry.cal));
+                }
+            }
+
+            plotModel.Series.Add(series);
+
+            return plotModel;
+        }
     }
 }
